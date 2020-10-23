@@ -64,6 +64,9 @@ export class CharacterFormComponent implements OnInit {
       this.character.mp = this.statCalcService.getMp(this.character);
       this.character.sp = this.statCalcService.getSp(this.character);
     }
+    this.character.meleeDmg = this.statCalcService.getMeleeDmg(this.character);
+    this.character.rangedDmg = this.statCalcService.getRangedDmg(this.character);
+    this.character.magicDmg = this.statCalcService.getMagicDmg(this.character);
   }
 
   raceHasClass(clazz: Class): boolean {
