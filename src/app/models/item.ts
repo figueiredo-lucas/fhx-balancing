@@ -1,0 +1,21 @@
+export interface Item {
+  id_item: number,
+  name: string,
+	rarity: number,
+	type: number,
+	weapon_slot: number,
+	race: number,
+	gender: number,
+	pc_class: number,
+	min_phys_dmg: number,
+	max_phys_dmg: number,
+	min_magic_dmg: number,
+	max_magic_dmg: number,
+	defence: number,
+	magic_defence: number,
+	mp_bonus: number,
+	required_str: number,
+	required_int: number,
+	required_dex: number,
+	required_level: number
+}

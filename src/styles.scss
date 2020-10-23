@@ -1,1 +1,55 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: #f8f8f8;
+}
+
+.fx {
+  display: flex;
+}
+
+.fd-c {
+  flex-direction: column;
+}
+
+.fd-r {
+  flex-direction: row;
+}
+
+.jc-sb {
+  justify-content: space-between;
+}
+
+.jc-c {
+  justify-content: center;
+}
+
+.jc-fs {
+  justify-content: flex-start;
+}
+
+.jc-fe {
+  justify-content: flex-end;
+}
+
+.ai-c {
+  align-items: center;
+}
+
+.ai-fs {
+  align-items: flex-start;
+}
+
+.ai-fe {
+  align-items: flex-end;
+}
+
+.stats {
+  .mat-form-field {
+    width: 100px;
+    .mat-form-field-wrapper {
+      padding-bottom: .25rem;
+    }
+  }
+}

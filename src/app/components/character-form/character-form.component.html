@@ -1,0 +1,73 @@
+<div class="fx">
+  <mat-card style="flex: 1">
+    <mat-card-content>
+      <form class="fx fd-c" #formDirective="ngForm">
+        <h3 style="margin-top: 0">Race / Class</h3>
+        <div class="fx">
+          <mat-radio-group class="fx fd-c mr" name="race" [(ngModel)]="character.race" (change)="onRaceChange()"
+            required>
+            <mat-radio-button [value]="race" *ngFor="let race of races">{{race.name}}</mat-radio-button>
+          </mat-radio-group>
+          <mat-radio-group class="fx fd-c" name="class" [(ngModel)]="character.class" (change)="onClassChange()" required>
+            <mat-radio-button [value]="class" *ngFor="let class of classes" [disabled]="!raceHasClass(class)">
+              {{class.name}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <h3>Char Info</h3>
+        <div class="fx">
+          <mat-radio-group class="mr fx ai-c" name="gender" [(ngModel)]="character.gender" required>
+            <mat-radio-button [value]="1">Male</mat-radio-button>
+            <mat-radio-button style="margin-left: .5rem; margin-top: 0;" [value]="2">Female</mat-radio-button>
+          </mat-radio-group>
+          <mat-form-field appearance="outline" style="width: 100px">
+            <mat-label>Level</mat-label>
+            <input matInput type="number" name="level" [(ngModel)]="character.level" (change)="onLevelChange()" min="1"
+              max="82" [disabled]="!character.race" required>
+          </mat-form-field>
+        </div>
+
+        <h3>Stats</h3>
+        <div class="fx stats">
+          <div class="fx fd-c mr">
+            <mat-form-field appearance="outline">
+              <mat-label>Vit</mat-label>
+              <input matInput type="number" name="vit" (change)="statChange($event, 'vit')" [ngModel]="character.vit"
+                [disabled]="!character.race">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Int</mat-label>
+              <input matInput type="number" name="int" (change)="statChange($event, 'int')" [ngModel]="character.int"
+                [disabled]="!character.race">
+            </mat-form-field>
+          </div>
+          <div class="fx fd-c">
+            <mat-form-field appearance="outline">
+              <mat-label>Dex</mat-label>
+              <input matInput type="number" name="dex" (change)="statChange($event, 'dex')" [ngModel]="character.dex"
+                [disabled]="!character.race">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Str</mat-label>
+              <input matInput type="number" name="str" (change)="statChange($event, 'str')" [ngModel]="character.str"
+                [disabled]="!character.race">
+            </mat-form-field>
+          </div>
+        </div>
+        <h4 style="margin: .25rem">Usable points: {{usablePoints}}</h4>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  <mat-card style="flex: 1">
+    <mat-card-content>
+      <div class="fx fd-c">
+        <span>HP: {{character.hp}}</span>
+        <span>MP: {{character.mp}}</span>
+        <span>SP: {{character.sp}}</span>
+        <span>Melee: {{character.meleeDmg?.min}} - {{character.meleeDmg?.max}}</span>
+        <span>Ranged: {{character.rangedDmg?.min}} - {{character.rangedDmg?.max}}</span>
+        <span>Magic: {{character.magicDmg?.min}} - {{character.magicDmg?.max}}</span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+</div>
