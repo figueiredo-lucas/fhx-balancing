@@ -34,15 +34,18 @@ export class CharacterFormComponent implements OnInit {
     this.character.hp = undefined;
     this.character.mp = undefined;
     this.character.sp = undefined;
+    this.character.meleeDmg = undefined;
+    this.character.rangedDmg = undefined;
+    this.character.magicDmg = undefined;
 
     if (this.character.class) {
       this.character.hp = this.statCalcService.getHp(this.character);
       this.character.mp = this.statCalcService.getMp(this.character);
       this.character.sp = this.statCalcService.getSp(this.character);
+      this.character.meleeDmg = this.statCalcService.getMeleeDmg(this.character);
+      this.character.rangedDmg = this.statCalcService.getRangedDmg(this.character);
+      this.character.magicDmg = this.statCalcService.getMagicDmg(this.character);
     }
-    this.character.meleeDmg = this.statCalcService.getMeleeDmg(this.character);
-    this.character.rangedDmg = this.statCalcService.getRangedDmg(this.character);
-    this.character.magicDmg = this.statCalcService.getMagicDmg(this.character);
   }
 
   onClassChange(): void {
@@ -50,6 +53,9 @@ export class CharacterFormComponent implements OnInit {
       this.character.hp = this.statCalcService.getHp(this.character);
       this.character.mp = this.statCalcService.getMp(this.character);
       this.character.sp = this.statCalcService.getSp(this.character);
+      this.character.meleeDmg = this.statCalcService.getMeleeDmg(this.character);
+      this.character.rangedDmg = this.statCalcService.getRangedDmg(this.character);
+      this.character.magicDmg = this.statCalcService.getMagicDmg(this.character);
     }
   }
 
@@ -63,10 +69,10 @@ export class CharacterFormComponent implements OnInit {
       this.character.hp = this.statCalcService.getHp(this.character);
       this.character.mp = this.statCalcService.getMp(this.character);
       this.character.sp = this.statCalcService.getSp(this.character);
+      this.character.meleeDmg = this.statCalcService.getMeleeDmg(this.character);
+      this.character.rangedDmg = this.statCalcService.getRangedDmg(this.character);
+      this.character.magicDmg = this.statCalcService.getMagicDmg(this.character);
     }
-    this.character.meleeDmg = this.statCalcService.getMeleeDmg(this.character);
-    this.character.rangedDmg = this.statCalcService.getRangedDmg(this.character);
-    this.character.magicDmg = this.statCalcService.getMagicDmg(this.character);
   }
 
   raceHasClass(clazz: Class): boolean {
@@ -89,10 +95,10 @@ export class CharacterFormComponent implements OnInit {
       this.character.hp = this.statCalcService.getHp(this.character);
       this.character.mp = this.statCalcService.getMp(this.character);
       this.character.sp = this.statCalcService.getSp(this.character);
+      this.character.meleeDmg = this.statCalcService.getMeleeDmg(this.character);
+      this.character.rangedDmg = this.statCalcService.getRangedDmg(this.character);
+      this.character.magicDmg = this.statCalcService.getMagicDmg(this.character);
     }
-    this.character.meleeDmg = this.statCalcService.getMeleeDmg(this.character);
-    this.character.rangedDmg = this.statCalcService.getRangedDmg(this.character);
-    this.character.magicDmg = this.statCalcService.getMagicDmg(this.character);
 
     this.usablePoints -= diff;
   }

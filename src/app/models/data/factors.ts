@@ -32,7 +32,7 @@ export const FACTORS: Factors = {
         0: 1.45,
         2: 1.1,
         5: 1,
-        9: 1.3
+        9: 1.35
       }
     }
   },

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Character } from '../models/character';
 import { DmgType } from '../models/data/dmg-type';
 import { FACTORS } from '../models/data/factors';
-import { DMG_FACTORS } from '../models/data/dmg-factors';
+import { DMG_FACTORS, DMG_MULTIPLIERS } from '../models/data/dmg-factors';
 import { Dmg } from '../models/dmg';
 import { DmgFactor, TypedDmgFactor } from '../models/dmg-factor';
 import { Factor } from '../models/factors';
@@ -29,14 +29,15 @@ export class StatCalcService {
     return Math.pow(constant, Math.pow(exp, factor * level));
   }
 
-  private formulaDmg(factor: DmgFactor, type: DmgType, char: Character): number {
-    const typedDmg: TypedDmgFactor = factor[type];
-    const exp = Math.exp(factor.expFactor);
+  private formulaDmg(type: DmgType, char: Character): number {
+    const typedDmg: TypedDmgFactor = DMG_FACTORS[type];
+    const exp = Math.exp(DMG_FACTORS.expFactor);
     const baseGrowth = this.calcDmg(typedDmg.constant, exp, typedDmg.factor, char.level);
+    const race = DMG_MULTIPLIERS[type][char.race.abbr];
     return typedDmg.stats.reduce((acc, curr) => {
       const pointPerLevel = this.calcDmg(curr.constant, exp, curr.factor, char.level);
       return acc + pointPerLevel * char[curr.key];
-    }, baseGrowth);
+    }, baseGrowth) * race.factor * race.classes[char.class.id];
   }
 
   getHp(char: Character): number {
@@ -50,15 +51,15 @@ export class StatCalcService {
   }
 
   getMeleeDmg(char: Character): Dmg {
-    const dmg = Math.floor(this.formulaDmg(DMG_FACTORS, DmgType.MELEE, char));
+    const dmg = Math.floor(this.formulaDmg(DmgType.MELEE, char));
     return { min: dmg, max: dmg };
   }
   getRangedDmg(char: Character): Dmg {
-    const dmg = Math.floor(this.formulaDmg(DMG_FACTORS, DmgType.RANGED, char));
+    const dmg = Math.floor(this.formulaDmg(DmgType.RANGED, char));
     return { min: dmg, max: dmg };
   }
   getMagicDmg(char: Character): Dmg {
-    const dmg = Math.floor(this.formulaDmg(DMG_FACTORS, DmgType.MAGIC, char));
+    const dmg = Math.floor(this.formulaDmg(DmgType.MAGIC, char));
     return { min: dmg, max: dmg };
   }
 }

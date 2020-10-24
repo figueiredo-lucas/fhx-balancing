@@ -1,5 +1,4 @@
 import { DmgFactor } from '../dmg-factor';
-import { DmgType } from './dmg-type';
 
 export const DMG_FACTORS: DmgFactor = {
   expFactor: 0.5,
@@ -39,3 +38,93 @@ export const DMG_FACTORS: DmgFactor = {
     }]
   }
 };
+
+export const DMG_MULTIPLIERS = {
+  melee: {
+    BA: {
+      factor: 1,
+      classes: {
+        0: 1.05,
+        1: 0.95,
+        2: 1,
+        4: 1
+      }
+    },
+    HE: {
+      factor: 1,
+      classes: {
+        2: 1.05,
+        5: 1,
+        7: 1,
+        9: 1.05
+      }
+    },
+    WE: {
+      factor: 1,
+      classes: {
+        0: 1.1,
+        2: 1.05,
+        5: 1,
+        9: 1.05
+      }
+    }
+  },
+  ranged: {
+    BA: {
+      factor: 1,
+      classes: {
+        0: 1,
+        1: 1,
+        2: 1.05,
+        4: 1
+      }
+    },
+    HE: {
+      factor: 1,
+      classes: {
+        2: 1.05,
+        5: 1,
+        7: 1,
+        9: 1.05
+      }
+    },
+    WE: {
+      factor: 1,
+      classes: {
+        0: 1,
+        2: 1.1,
+        5: 1,
+        9: 1
+      }
+    }
+  },
+  magic: {
+    BA: {
+      factor: 1,
+      classes: {
+        0: 1,
+        1: 1,
+        2: 1,
+        4: 1.05
+      }
+    },
+    HE: {
+      factor: 1,
+      classes: {
+        2: 1,
+        5: 1.05,
+        7: 1,
+        9: 1
+      }
+    },
+    WE: {
+      factor: 1,
+      classes: {
+        0: 1,
+        2: 1,
+        5: 1,
+        9: 1
+      }
+    }
+  }
+}
