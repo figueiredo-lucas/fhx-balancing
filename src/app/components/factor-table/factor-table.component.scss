@@ -1,0 +1,23 @@
+table input {
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+}
+
+table td {
+  border: 1px solid black;
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+table th {
+  background: black;
+  color: white;
+  padding: 0 .25rem;
+  &:first-of-type {
+    text-align: left;
+  }
+}

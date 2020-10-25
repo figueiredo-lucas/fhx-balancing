@@ -7,16 +7,21 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CharacterFormComponent } from './components/character-form/character-form.component';
+import { FactorTableComponent } from './components/factor-table/factor-table.component';
+import { StatFactorModalComponent } from './components/stat-factor-modal/stat-factor-modal.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CharacterFormComponent
+    CharacterFormComponent,
+    FactorTableComponent,
+    StatFactorModalComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +32,8 @@ import { CharacterFormComponent } from './components/character-form/character-fo
     MatButtonModule,
     MatRadioModule,
     MatInputModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Character } from 'src/app/models/character';
 import { Class } from 'src/app/models/class';
 import { Race } from 'src/app/models/race';
 import { CharacterService } from 'src/app/services/character.service';
+import { LiveFactorsService } from 'src/app/services/live-factors.service';
 import { StatCalcService } from 'src/app/services/stat-calc.service';
+import { StatFactorModalComponent } from '../stat-factor-modal/stat-factor-modal.component';
 
 @Component({
   selector: 'app-character-form',
@@ -12,7 +15,10 @@ import { StatCalcService } from 'src/app/services/stat-calc.service';
 })
 export class CharacterFormComponent implements OnInit {
 
-  constructor(private characterService: CharacterService, private statCalcService: StatCalcService) { }
+  constructor(private characterService: CharacterService,
+    private statCalcService: StatCalcService,
+    private liveFactorsService: LiveFactorsService,
+    private dialog: MatDialog) { }
 
   character = {} as Character;
   races: Race[];
@@ -21,7 +27,7 @@ export class CharacterFormComponent implements OnInit {
 
   onRaceChange(): void {
     if (this.character.class) {
-      if(!this.character.race?.classes.some(c => c.id === this.character.class.id)) {
+      if (!this.character.race?.classes.some(c => c.id === this.character.class.id)) {
         this.character.class = undefined;
       }
     }
@@ -38,25 +44,11 @@ export class CharacterFormComponent implements OnInit {
     this.character.rangedDmg = undefined;
     this.character.magicDmg = undefined;
 
-    if (this.character.class) {
-      this.character.hp = this.statCalcService.getHp(this.character);
-      this.character.mp = this.statCalcService.getMp(this.character);
-      this.character.sp = this.statCalcService.getSp(this.character);
-      this.character.meleeDmg = this.statCalcService.getMeleeDmg(this.character);
-      this.character.rangedDmg = this.statCalcService.getRangedDmg(this.character);
-      this.character.magicDmg = this.statCalcService.getMagicDmg(this.character);
-    }
+    this.updateWithLive();
   }
 
   onClassChange(): void {
-    if (this.character.class) {
-      this.character.hp = this.statCalcService.getHp(this.character);
-      this.character.mp = this.statCalcService.getMp(this.character);
-      this.character.sp = this.statCalcService.getSp(this.character);
-      this.character.meleeDmg = this.statCalcService.getMeleeDmg(this.character);
-      this.character.rangedDmg = this.statCalcService.getRangedDmg(this.character);
-      this.character.magicDmg = this.statCalcService.getMagicDmg(this.character);
-    }
+    this.updateWithLive();
   }
 
   onLevelChange(): void {
@@ -65,14 +57,7 @@ export class CharacterFormComponent implements OnInit {
     this.character.int = this.character.race?.int;
     this.character.str = this.character.race?.str;
     this.character.dex = this.character.race?.dex;
-    if (this.character.class) {
-      this.character.hp = this.statCalcService.getHp(this.character);
-      this.character.mp = this.statCalcService.getMp(this.character);
-      this.character.sp = this.statCalcService.getSp(this.character);
-      this.character.meleeDmg = this.statCalcService.getMeleeDmg(this.character);
-      this.character.rangedDmg = this.statCalcService.getRangedDmg(this.character);
-      this.character.magicDmg = this.statCalcService.getMagicDmg(this.character);
-    }
+    this.updateWithLive();
   }
 
   raceHasClass(clazz: Class): boolean {
@@ -91,6 +76,21 @@ export class CharacterFormComponent implements OnInit {
       return;
     }
     this.character[statName] = newValue;
+    this.updateWithLive();
+
+    this.usablePoints -= diff;
+  }
+
+  updateWithOriginal(): void {
+    this.character.hp = this.statCalcService.getHp(this.character, false);
+    this.character.mp = this.statCalcService.getMp(this.character, false);
+    this.character.sp = this.statCalcService.getSp(this.character, false);
+    this.character.meleeDmg = this.statCalcService.getMeleeDmg(this.character);
+    this.character.rangedDmg = this.statCalcService.getRangedDmg(this.character);
+    this.character.magicDmg = this.statCalcService.getMagicDmg(this.character);
+  }
+
+  updateWithLive(): void {
     if (this.character.class) {
       this.character.hp = this.statCalcService.getHp(this.character);
       this.character.mp = this.statCalcService.getMp(this.character);
@@ -99,13 +99,19 @@ export class CharacterFormComponent implements OnInit {
       this.character.rangedDmg = this.statCalcService.getRangedDmg(this.character);
       this.character.magicDmg = this.statCalcService.getMagicDmg(this.character);
     }
+  }
 
-    this.usablePoints -= diff;
+  configureHPMPSPFactors(): void {
+    this.dialog.open(StatFactorModalComponent);
   }
 
   ngOnInit(): void {
     this.races = this.characterService.getRaces();
     this.classes = this.characterService.getClasses();
+    this.liveFactorsService.getLiveFactorObservable().subscribe(() => {
+      console.log('asdads');
+      this.updateWithLive();
+    })
   }
 
 }

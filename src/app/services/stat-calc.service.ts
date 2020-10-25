@@ -5,14 +5,15 @@ import { FACTORS } from '../models/data/factors';
 import { DMG_FACTORS, DMG_MULTIPLIERS } from '../models/data/dmg-factors';
 import { Dmg } from '../models/dmg';
 import { DmgFactor, TypedDmgFactor } from '../models/dmg-factor';
-import { Factor } from '../models/factors';
+import { Factor, Factors } from '../models/factors';
+import { LiveFactorsService } from './live-factors.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StatCalcService {
 
-  constructor() { }
+  constructor(private liveFactorsService: LiveFactorsService) { }
 
   private prog(level) {
     return ((1 + level) * level) / 2;
@@ -40,14 +41,17 @@ export class StatCalcService {
     }, baseGrowth) * race.factor * race.classes[char.class.id];
   }
 
-  getHp(char: Character): number {
-    return Math.floor(this.formulaHpMpSp(FACTORS.hp, char, 'vit'));
+  getHp(char: Character, live: boolean = true): number {
+    const factors: Factors = live ? this.liveFactorsService.getLiveFactor() : this.liveFactorsService.getOriginalFactor();
+    return Math.floor(this.formulaHpMpSp(factors.hp, char, 'vit'));
   }
-  getMp(char: Character): number {
-    return Math.floor(this.formulaHpMpSp(FACTORS.mp, char, 'int'));
+  getMp(char: Character, live: boolean = true): number {
+    const factors: Factors = live ? this.liveFactorsService.getLiveFactor() : this.liveFactorsService.getOriginalFactor();
+    return Math.floor(this.formulaHpMpSp(factors.mp, char, 'int'));
   }
-  getSp(char: Character): number {
-    return Math.floor(this.formulaHpMpSp(FACTORS.sp, char, 'vit'));
+  getSp(char: Character, live: boolean = true): number {
+    const factors: Factors = live ? this.liveFactorsService.getLiveFactor() : this.liveFactorsService.getOriginalFactor();
+    return Math.floor(this.formulaHpMpSp(factors.sp, char, 'vit'));
   }
 
   getMeleeDmg(char: Character): Dmg {

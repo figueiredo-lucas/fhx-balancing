@@ -8,11 +8,11 @@ export interface RaceFactor {
 
 export interface Factor {
   factor: number,
-    constant: number,
-    progFactor: number,
-    BA: RaceFactor,
-    HE: RaceFactor,
-    WE: RaceFactor
+  constant: number,
+  progFactor: number,
+  BA: RaceFactor,
+  HE: RaceFactor,
+  WE: RaceFactor
 }
 
 export interface Factors {

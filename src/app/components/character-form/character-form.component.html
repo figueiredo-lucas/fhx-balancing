@@ -66,8 +66,9 @@
         <span>Melee: {{character.meleeDmg?.min}} - {{character.meleeDmg?.max}}</span>
         <span>Ranged: {{character.rangedDmg?.min}} - {{character.rangedDmg?.max}}</span>
         <span>Magic: {{character.magicDmg?.min}} - {{character.magicDmg?.max}}</span>
+        <button mat-raised-button color="primary" (mousedown)="updateWithOriginal()" (mouseup)="updateWithLive()" [disabled]="!character.hp">Peek original values</button>
+        <button mat-raised-button (click)="configureHPMPSPFactors()">Configure HP/MP/SP Factors</button>
       </div>
     </mat-card-content>
   </mat-card>
-
 </div>

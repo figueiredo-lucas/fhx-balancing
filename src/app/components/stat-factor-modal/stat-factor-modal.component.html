@@ -1,0 +1,12 @@
+<div class="fx jc-sb">
+  <div>
+    <button mat-raised-button color="warn" (click)="reset()" style="margin-right: .25rem">Reset</button>
+    <button mat-raised-button color="primary" (click)="update()">Update</button>
+  </div>
+  <button mat-raised-button mat-dialog-close>Close</button>
+</div>
+<div mat-dialog-content>
+  <app-factor-table [factor]="factors.hp" name="HP"></app-factor-table>
+  <app-factor-table [factor]="factors.mp" name="MP"></app-factor-table>
+  <app-factor-table [factor]="factors.sp" name="SP"></app-factor-table>
+</div>

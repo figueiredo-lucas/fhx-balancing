@@ -1,0 +1,67 @@
+<div class="fx fd-c">
+  <h4 *ngIf="name">{{name}}</h4>
+  <div class="fx">
+    <mat-form-field appearance="outline" style="flex: 1; margin-right: .5rem">
+      <mat-label>Factor</mat-label>
+      <input matInput type="number" name="factor" [(ngModel)]="factor.factor" ngModelOptions="{standalone: true}">
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="flex: 1; margin-right: .5rem">
+      <mat-label>Constant</mat-label>
+      <input matInput type="number" name="constant" [(ngModel)]="factor.constant" ngModelOptions="{standalone: true}">
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="flex: 1">
+      <mat-label>Prog Factor</mat-label>
+      <input matInput type="number" name="prog-factor" [(ngModel)]="factor.progFactor" ngModelOptions="{standalone: true}">
+    </mat-form-field>
+  </div>
+  <table cellpadding="0" cellspacing="0">
+    <tr>
+      <th>Race</th>
+      <th colspan="4">BA</th>
+      <th colspan="4">HE</th>
+      <th colspan="4">WE</th>
+    </tr>
+    <tr>
+      <th>Factor</th>
+      <td colspan="4"><input type="text" [(ngModel)]="factor.BA.factor"></td>
+      <td colspan="4"><input type="text" [(ngModel)]="factor.HE.factor"></td>
+      <td colspan="4"><input type="text" [(ngModel)]="factor.WE.factor"></td>
+    </tr>
+    <tr>
+      <th>Min</th>
+      <td colspan="4"><input type="text" [(ngModel)]="factor.BA.min"></td>
+      <td colspan="4"><input type="text" [(ngModel)]="factor.HE.min"></td>
+      <td colspan="4"><input type="text" [(ngModel)]="factor.WE.min"></td>
+    </tr>
+    <tr>
+      <th>Class</th>
+      <th>WR</th>
+      <th>KN</th>
+      <th>AR</th>
+      <th>PL</th>
+      <th>AR</th>
+      <th>WZ</th>
+      <th>CL</th>
+      <th>SM</th>
+      <th>WR</th>
+      <th>AR</th>
+      <th>WZ</th>
+      <th>SM</th>
+    </tr>
+    <tr>
+      <th>Factor</th>
+      <td><input type="text" [(ngModel)]="factor.BA.classes['0']"></td>
+      <td><input type="text" [(ngModel)]="factor.BA.classes['1']"></td>
+      <td><input type="text" [(ngModel)]="factor.BA.classes['2']"></td>
+      <td><input type="text" [(ngModel)]="factor.BA.classes['4']"></td>
+      <td><input type="text" [(ngModel)]="factor.HE.classes['2']"></td>
+      <td><input type="text" [(ngModel)]="factor.HE.classes['5']"></td>
+      <td><input type="text" [(ngModel)]="factor.HE.classes['7']"></td>
+      <td><input type="text" [(ngModel)]="factor.HE.classes['9']"></td>
+      <td><input type="text" [(ngModel)]="factor.WE.classes['0']"></td>
+      <td><input type="text" [(ngModel)]="factor.WE.classes['2']"></td>
+      <td><input type="text" [(ngModel)]="factor.WE.classes['5']"></td>
+      <td><input type="text" [(ngModel)]="factor.WE.classes['9']"></td>
+    </tr>
+  </table>
+</div>
