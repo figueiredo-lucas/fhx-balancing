@@ -1,5 +1,5 @@
 <div class="fx">
-  <mat-card style="flex: 1">
+  <mat-card style="flex: 1" class="mr">
     <mat-card-content>
       <form class="fx fd-c" #formDirective="ngForm">
         <h3 style="margin-top: 0">Race / Class</h3>
@@ -66,8 +66,10 @@
         <span>Melee: {{character.meleeDmg?.min}} - {{character.meleeDmg?.max}}</span>
         <span>Ranged: {{character.rangedDmg?.min}} - {{character.rangedDmg?.max}}</span>
         <span>Magic: {{character.magicDmg?.min}} - {{character.magicDmg?.max}}</span>
-        <button mat-raised-button color="primary" (mousedown)="updateWithOriginal()" (mouseup)="updateWithLive()" [disabled]="!character.hp">Peek original values</button>
-        <button mat-raised-button (click)="configureHPMPSPFactors()">Configure HP/MP/SP Factors</button>
+        <div class="mt fx jc-sb">
+          <button mat-raised-button color="primary" (mousedown)="updateWithOriginal()" (mouseup)="updateWithLive()" [disabled]="!character.hp">Peek original values</button>
+          <button mat-raised-button (click)="configureHPMPSPFactors()">Configure HP/MP/SP Factors</button>
+        </div>
       </div>
     </mat-card-content>
   </mat-card>
