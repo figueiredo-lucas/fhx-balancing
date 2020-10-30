@@ -2,9 +2,9 @@ import { Factors } from '../factors';
 
 export const FACTORS: Factors = {
   hp: {
-    factor: 0.00988,
+    factor: 0.0091,
     constant: 20,
-    progFactor: 0.5,
+    progFactor: 1,
     BA: {
       factor: 1,
       min: 60,
@@ -37,8 +37,8 @@ export const FACTORS: Factors = {
     }
   },
   mp: {
-    factor: 0.007,
-    constant: 20,
+    factor: 0.006,
+    constant: 19,
     progFactor: 1,
     BA: {
       factor: 0.6,
@@ -72,9 +72,9 @@ export const FACTORS: Factors = {
     }
   },
   sp: {
-    factor: 0.005,
-    constant: 20,
-    progFactor: 1,
+    factor: 0.003,
+    constant: 15,
+    progFactor: 0.5,
     BA: {
       factor: 0.8,
       min: 60,

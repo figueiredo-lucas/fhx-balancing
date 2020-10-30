@@ -109,7 +109,6 @@ export class CharacterFormComponent implements OnInit {
     this.races = this.characterService.getRaces();
     this.classes = this.characterService.getClasses();
     this.liveFactorsService.getLiveFactorObservable().subscribe(() => {
-      console.log('asdads');
       this.updateWithLive();
     })
   }

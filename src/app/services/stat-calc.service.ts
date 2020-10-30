@@ -23,7 +23,7 @@ export class StatCalcService {
     const valuePerPoint = Math.pow(factor.constant, Math.exp(factor.factor * char.level))
     const baseValue = valuePerPoint * char[statName] + this.prog(char.level) * factor.progFactor;
     const race = factor[char.race.abbr];
-    return baseValue * race.factor * race.classes[char.class.id] + race.min;
+    return baseValue * race.factor * race.classes[char.class.id] + parseInt(race.min);
   }
 
   private calcDmg(constant, exp, factor, level) {
