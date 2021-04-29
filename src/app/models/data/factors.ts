@@ -4,15 +4,15 @@ export const FACTORS: Factors = {
   hp: {
     factor: 0.0091,
     constant: 20,
-    progFactor: 1,
+    progFactor: 1.3,
     BA: {
       factor: 1,
       min: 60,
       classes: {
-        0: 1.1,
-        1: 1.4,
+        0: 1.35,
+        1: 1.25,
         2: 0.8,
-        4: 1.25
+        4: 1.2
       }
     },
     HE: {
@@ -39,7 +39,7 @@ export const FACTORS: Factors = {
   mp: {
     factor: 0.006,
     constant: 19,
-    progFactor: 1,
+    progFactor: 1.5,
     BA: {
       factor: 0.6,
       min: 60,
@@ -74,7 +74,7 @@ export const FACTORS: Factors = {
   sp: {
     factor: 0.003,
     constant: 15,
-    progFactor: 0.5,
+    progFactor: 1,
     BA: {
       factor: 0.8,
       min: 60,
@@ -89,10 +89,10 @@ export const FACTORS: Factors = {
       factor: 0.6,
       min: 60,
       classes: {
-        2: 1.3,
+        2: 1.95,
         5: 1,
         7: 1.05,
-        9: 1.2
+        9: 1.8
       }
     },
     WE: {
